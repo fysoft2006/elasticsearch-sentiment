@@ -41,6 +41,7 @@ public class SearchServerResource extends ServerResource {
 		}
 		searchParameters.setQ(params.get("q") == null ? "*" : params.get("q"));
 		searchParameters.setDf(params.get("df") == null ? "_all" : params.get("df"));
+		searchParameters.setFq(params.get("fq") == null ? "*" : params.get("fq"));
 		searchParameters.setAnalyzer(params.get("analyzer") == null ? "ik" : params.get("analyzer"));
 		searchParameters.setDefault_operator(params.get("default_operator") == null ? Operator.AND : Operator
 				.valueOf(params.get("default_operator")));
@@ -52,7 +53,7 @@ public class SearchServerResource extends ServerResource {
 		searchParameters.setSort(params.get("sort") == null ? "" : params.get("sort"));
 		searchParameters.setTrack_scores(params.get("track_scores") == null ? true : Boolean.valueOf(params
 				.get("track_scores")));
-		searchParameters.setTimeout(params.get("timeout") == null ? new TimeValue(0) : new TimeValue(Long
+		searchParameters.setTimeout(params.get("timeout") == null ? new TimeValue(1000000) : new TimeValue(Long
 				.getLong(params.get("timeout"))));
 		searchParameters.setFrom(params.get("from") == null ? 0 : Integer.valueOf(params.get("from")));
 		searchParameters.setSize(params.get("size") == null ? 10 : Integer.valueOf(params.get("size")));
@@ -61,7 +62,7 @@ public class SearchServerResource extends ServerResource {
 				.valueOf(params.get("lowercase_expanded_terms")));
 		searchParameters.setAnalyze_wildcard(params.get("analyze_wildcard") == null ? true : Boolean.valueOf(params
 				.get("analyze_wildcard")));
-		searchParameters.setFq(params.get("fq") == null ? "*" : params.get("fq"));
+
 		System.out.println(searchParameters.toString());
 	}
 

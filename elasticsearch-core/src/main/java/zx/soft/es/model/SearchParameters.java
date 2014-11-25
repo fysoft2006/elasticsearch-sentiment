@@ -6,7 +6,7 @@ import org.elasticsearch.index.query.QueryStringQueryBuilder.Operator;
 public class SearchParameters {
 
 	//查询字符串
-	private String q;
+	private String q = "*";
 
 	//查询语句中未定义字段时，采用此处设置的field
 	private String df = "_all";
@@ -16,7 +16,7 @@ public class SearchParameters {
 	//解析查询字符串时使用的分词器;
 	private String analyzer = "ik";
 
-	//逻辑操作:AND,OR 默认是 OR.
+	//逻辑操作:AND,OR, 默认设置为AND.
 	private Operator default_operator = Operator.AND;
 
 	//设置是否按查询匹配度排序
@@ -37,8 +37,8 @@ public class SearchParameters {
 	//设置为true，可以将得分作为返回值的一部分返回
 	private boolean track_scores = Boolean.TRUE;
 
-	//设置搜索超时时间，默认no timeout
-	private TimeValue timeout = new TimeValue(0);
+	//设置搜索超时时间，默认no timeout,此处设置为1000000
+	private TimeValue timeout = new TimeValue(1000000);
 
 	//记录的返回点，默认从0开始返回
 	private int from = 0;

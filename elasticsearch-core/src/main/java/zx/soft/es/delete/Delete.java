@@ -14,7 +14,8 @@ public class Delete {
 
 	public DeleteByQueryResponse deleteByQuery(SearchParameters searchParameters) throws IOException {
 		DeleteByQueryResponse response = null;
-		if (searchParameters.getQ() != "") {
+		//防止误删所有记录
+		if (searchParameters.getQ() != "*") {
 			QueryBuilder query = QueryBuilders.queryString(searchParameters.getQ())
 					.defaultField(searchParameters.getDf()).defaultOperator(searchParameters.getDefault_operator())
 					.analyzer(searchParameters.getAnalyzer())
@@ -34,7 +35,6 @@ public class Delete {
 		searchParameters.setFields("_source,content,nickname,read_count");
 		searchParameters.setLowercase_expanded_terms(Boolean.FALSE);
 		//searchParameters.setTrack_scores(false);
-		searchParameters.setFq("read_count:185,195");
 		//searchParameters.setFrom(1);
 		//searchParameters.setExplain(true);
 		//searchParameters.setDefault_operator(Operator.OR);

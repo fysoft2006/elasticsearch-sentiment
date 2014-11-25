@@ -78,7 +78,7 @@ public class SearchingData {
 		if (searchParameters.getSize() != 10)
 			searchRequest.setSize(searchParameters.getSize());
 
-		if (searchParameters.getTimeout() != new TimeValue(0))
+		if (searchParameters.getTimeout() != new TimeValue(1000000))
 			searchRequest.setTimeout(searchParameters.getTimeout());
 
 		if (searchParameters.isTrack_scores() != true)

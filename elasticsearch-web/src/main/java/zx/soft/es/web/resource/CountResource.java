@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import zx.soft.es.model.CountResult;
 import zx.soft.es.model.SearchParameters;
+import zx.soft.es.utils.JsonUtils;
 import zx.soft.es.utils.URLUtils;
 import zx.soft.es.web.application.SearchApplication;
 
@@ -66,7 +67,7 @@ public class CountResource extends ServerResource {
 		final String countURL = URLUtils.getDecoderURL(getReference().toString(), "utf-8");
 		logger.info("CountURL= " + countURL);
 		CountResult countResult = application.doCount(searchParameters);
-		return countResult.toString();
+		return JsonUtils.toJsonWithoutPretty(countResult);
 	}
 
 }
