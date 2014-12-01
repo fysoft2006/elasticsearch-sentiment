@@ -17,7 +17,7 @@ public class JDBC {
 	private SessionFactory sessionFactory = HibernateConfig.getSessionFactory();
 
 	/**
-	 * 获得表中最大的id号
+	 * 获得表中记录数
 	 * @return 记录数
 	 */
 	public Object getTableCount() {
@@ -39,27 +39,23 @@ public class JDBC {
 	}
 
 	/**
-	 * 获取数据库中文本
+	 * 获取数据库SianWeibo对象列表
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<String> getText(String from, String size) {
+	public List<SinaWeibo> getText(String from, String size) {
 		Session session = sessionFactory.openSession();
 		Transaction t = null;
 		try {
 			t = session.beginTransaction();
 			String hql = "FROM SinaWeibo WHERE id>=:id_from and id<:id_to";
-			List<String> textList = new ArrayList<>();
+
 			Query Query = session.createQuery(hql);
 			Query.setParameter("id_from", from);
 			Query.setParameter("id_to", String.valueOf(Integer.valueOf(from) + Integer.valueOf(size)));
 			List<SinaWeibo> sinaWeibos = Query.list();
-			for (SinaWeibo sinaWeibo : sinaWeibos) {
-				textList.add(sinaWeibo.getText());
-				System.out.println(sinaWeibo.getText());
-			}
 			t.commit();
-			return textList;
+			return sinaWeibos;
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 			throw new RuntimeException();
@@ -72,7 +68,7 @@ public class JDBC {
 		JDBC jdbc = new JDBC();
 		/*Object count = jdbc.getTableCount();
 		System.out.println(count);*/
-		List<String> textList = new ArrayList<>();
+		List<SinaWeibo> textList = new ArrayList<>();
 		textList = jdbc.getText(String.valueOf(100), String.valueOf(1000));
 		System.out.println(textList.size());
 	}
