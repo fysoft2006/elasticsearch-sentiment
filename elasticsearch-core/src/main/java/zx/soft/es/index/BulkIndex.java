@@ -2,6 +2,7 @@ package zx.soft.es.index;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import org.elasticsearch.action.bulk.BulkProcessor;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -18,11 +19,11 @@ import org.slf4j.LoggerFactory;
 
 import zx.soft.es.client.BuildClient;
 import zx.soft.es.model.Weibo;
+import zx.soft.es.utils.ConfigUtil;
 
 public class BulkIndex {
 
-	private final static String index = "spiderindextest";
-	private final static String type = "spidertypetest";
+	private Properties props = ConfigUtil.getProps("index.properties");
 	private static Logger logger = LoggerFactory.getLogger(BulkIndex.class);
 	private static TransportClient client = BuildClient.buildClient();
 	private static BulkProcessor bulkProcessor = BulkProcessor.builder(client, new BulkProcessor.Listener() {
@@ -77,7 +78,8 @@ public class BulkIndex {
 						.field("location_code", weibo.getLocation_code())
 						.field("province_code", weibo.getProvince_code()).field("city_code", weibo.getCity_code())
 						.endObject();
-				IndexRequest indexRequest = new IndexRequest(index, type, weibo.getId()).source(doc);
+				IndexRequest indexRequest = new IndexRequest(props.getProperty("name.index"),
+						props.getProperty("name.type"), weibo.getId()).source(doc);
 				bulkProcessor.add(indexRequest);
 			} catch (IOException e) {
 				throw new RuntimeException(e);

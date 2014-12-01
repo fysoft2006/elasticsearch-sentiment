@@ -20,7 +20,7 @@ import zx.soft.es.client.BuildClient;
 import zx.soft.es.model.SearchParameters;
 import zx.soft.es.utils.ConfigUtil;
 
-public class SearchingData {
+public class FilterQuery {
 	private static Logger logger = LoggerFactory.getLogger(SearchingData.class);
 
 	public static SearchResponse doSearch(SearchParameters searchParameters) throws IOException {
@@ -61,44 +61,7 @@ public class SearchingData {
 			QueryBuilder filterquery = QueryBuilders.filteredQuery(matchAllQuery, filterBuilder);
 			searchRequest.setQuery(filterquery);
 			logger.info("set query succeed!");
-		} else {
-			QueryStringQueryBuilder qb = QueryBuilders.queryString(searchParameters.getQ());
-			if (searchParameters.getAnalyzer() != "ik") {
-				qb.analyzer(searchParameters.getAnalyzer());
-				logger.info("analyzer=" + searchParameters.getAnalyzer());
-			}
-
-			if (searchParameters.getDf() != "") {
-				qb.defaultField(searchParameters.getDf());
-				logger.info("default_field=" + searchParameters.getDf());
-			}
-
-			if (searchParameters.getDefault_operator() != Operator.OR) {
-				qb.defaultOperator(searchParameters.getDefault_operator());
-				logger.info("operator=" + searchParameters.getDefault_operator());
-			}
-
-			if (searchParameters.isLowercase_expanded_terms() != true) {
-				qb.lowercaseExpandedTerms(searchParameters.isLowercase_expanded_terms());
-				logger.info("Lowercase_expanded_terms=" + searchParameters.isLowercase_expanded_terms());
-			}
-
-			if (searchParameters.isAnalyze_wildcard() != true) {
-				qb.analyzeWildcard(searchParameters.isAnalyze_wildcard());
-				logger.info("analyze_wildcard=" + searchParameters.isAnalyze_wildcard());
-			}
-			searchRequest.setQuery(qb);
-			logger.info("set query succeed!");
 		}
-		/*if (searchParameters.getFq() != "*") {
-
-			QueryStringQueryBuilder queryBuilder = QueryBuilders.queryString(searchParameters.getFq())
-					.defaultOperator(searchParameters.getDefault_operator()).analyzer(searchParameters.getAnalyzer())
-					.lowercaseExpandedTerms(searchParameters.isLowercase_expanded_terms())
-					.analyzeWildcard(searchParameters.isAnalyze_wildcard());
-			FilterBuilder filterBuilder = FilterBuilders.queryFilter(queryBuilder);
-			searchRequest.setPostFilter(filterBuilder);
-		}*/
 
 		if (searchParameters.getExplain() != false)
 			searchRequest.setExplain(searchParameters.getExplain());
@@ -135,13 +98,12 @@ public class SearchingData {
 
 	public static void main(String[] args) throws IOException {
 		SearchParameters searchParameters = new SearchParameters();
-		searchParameters.setFq(" 相信  ");
+		searchParameters.setFq(" 相信 ");
 		searchParameters.setTimeout(new TimeValue(1000000));
 		searchParameters.setSize(5);
 		searchParameters.setFields("_source,content,nickname,read_count");
 		//searchParameters.setLowercase_expanded_terms(Boolean.FALSE);
 		//searchParameters.setTrack_scores(false);
-		//searchParameters.setFq("lasttime:[1416384000 TO 1416384010]");
 		//searchParameters.setFrom(1);
 		//searchParameters.setExplain(true);
 		searchParameters.setDefault_operator(Operator.OR);
