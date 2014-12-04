@@ -14,9 +14,8 @@ import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.es.model.SearchParameters;
-import zx.soft.es.utils.IndexResponse;
-import zx.soft.es.utils.URLUtils;
+import zx.soft.es.core.domain.SearchParameters;
+import zx.soft.es.core.utils.IndexResponse;
 import zx.soft.es.web.application.SearchApplication;
 
 public class SearchServerResource extends ServerResource {
@@ -68,9 +67,6 @@ public class SearchServerResource extends ServerResource {
 
 	@Get("json")
 	public Object getSearchResult() {
-
-		final String searchURL = URLUtils.getDecoderURL(getReference().toString(), "utf-8");
-		logger.info("search url :" + searchURL);
 		if (getReference().getRemainingPart() == null) {
 			return new IndexResponse.Builder(-1, "illegal url!");
 		}
@@ -81,8 +77,6 @@ public class SearchServerResource extends ServerResource {
 
 	@Delete("json")
 	public Object deleteByQuery() {
-		final String searchURL = URLUtils.getDecoderURL(getReference().toString(), "utf-8");
-		logger.info("search url :" + searchURL);
 		DeleteByQueryResponse response = application.doDeleteByQuery(searchParameters);
 		return response;
 	}

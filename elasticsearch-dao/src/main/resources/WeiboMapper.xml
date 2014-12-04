@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zx.soft.es.mapper.WeiboMapper">
+
+	<sql id="weiboColumns">id,wid,username,repostscount,commentscount,text,createat,
+		owid,ousername,favorited,geo,latitude,longitude,originalpic,source,visible,lasttime
+	</sql>
+
+	<select id="getWeiboData" resultType="SinaWeibo" >
+		SELECT 
+		<include refid="weiboColumns" />
+		FROM sina_user_weibos_1386614765 WHERE id=#{id};
+	</select>
+
+</mapper>

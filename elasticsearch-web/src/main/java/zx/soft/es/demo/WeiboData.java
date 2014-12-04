@@ -3,9 +3,9 @@ package zx.soft.es.demo;
 import java.util.ArrayList;
 import java.util.List;
 
-import zx.soft.es.model.PostData;
-import zx.soft.es.model.Weibo;
-import zx.soft.es.utils.JsonUtils;
+import zx.soft.es.core.domain.PostData;
+import zx.soft.es.core.domain.Weibo;
+import zx.soft.utils.json.JsonUtils;
 
 /**
  * 产生json格式的微博字段，进行POST 索引测试

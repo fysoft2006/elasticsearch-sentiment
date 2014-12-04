@@ -10,11 +10,12 @@ import org.restlet.routing.Router;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.es.delete.Delete;
-import zx.soft.es.model.CountResult;
-import zx.soft.es.model.SearchParameters;
-import zx.soft.es.search.Count;
-import zx.soft.es.search.SearchingData;
+import zx.soft.es.client.BuildClient;
+import zx.soft.es.core.delete.Delete;
+import zx.soft.es.core.domain.CountResult;
+import zx.soft.es.core.domain.SearchParameters;
+import zx.soft.es.core.search.Count;
+import zx.soft.es.core.search.SearchingData;
 import zx.soft.es.web.resource.CountResource;
 import zx.soft.es.web.resource.SearchServerResource;
 
@@ -26,9 +27,9 @@ public class SearchApplication extends Application {
 	private Delete delete;
 
 	public SearchApplication() {
-		searchingData = new SearchingData();
-		count = new Count();
-		delete = new Delete();
+		searchingData = new SearchingData(BuildClient.buildClient(), "spiderindextest", "spidertypetest");
+		count = new Count(BuildClient.buildClient(), "spiderindextest");
+		delete = new Delete(BuildClient.buildClient(), "spiderindextest");
 	}
 
 	@Override
@@ -39,6 +40,7 @@ public class SearchApplication extends Application {
 		return router;
 	}
 
+	@SuppressWarnings("static-access")
 	public SearchResponse doSearch(SearchParameters searchParameters) {
 		SearchResponse response = null;
 		try {

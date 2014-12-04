@@ -4,8 +4,8 @@ import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
-import zx.soft.es.model.PostData;
-import zx.soft.es.utils.IndexResponse;
+import zx.soft.es.core.domain.PostData;
+import zx.soft.es.core.utils.IndexResponse;
 import zx.soft.es.web.application.IndexApplication;
 
 /**

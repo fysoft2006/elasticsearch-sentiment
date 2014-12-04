@@ -5,9 +5,9 @@ import java.util.Properties;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
 
-import zx.soft.es.utils.ConfigUtil;
 import zx.soft.es.web.application.IndexApplication;
 import zx.soft.es.web.jackson.ReplaceConvert;
+import zx.soft.utils.config.ConfigUtil;
 
 /**
  * 微博数据服务类

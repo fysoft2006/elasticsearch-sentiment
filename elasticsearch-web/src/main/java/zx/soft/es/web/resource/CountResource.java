@@ -11,11 +11,10 @@ import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import zx.soft.es.model.CountResult;
-import zx.soft.es.model.SearchParameters;
-import zx.soft.es.utils.JsonUtils;
-import zx.soft.es.utils.URLUtils;
+import zx.soft.es.core.domain.CountResult;
+import zx.soft.es.core.domain.SearchParameters;
 import zx.soft.es.web.application.SearchApplication;
+import zx.soft.utils.json.JsonUtils;
 
 public class CountResource extends ServerResource {
 
@@ -64,8 +63,6 @@ public class CountResource extends ServerResource {
 
 	@Get("json")
 	public Object getCountResult() {
-		final String countURL = URLUtils.getDecoderURL(getReference().toString(), "utf-8");
-		logger.info("CountURL= " + countURL);
 		CountResult countResult = application.doCount(searchParameters);
 		return JsonUtils.toJsonWithoutPretty(countResult);
 	}

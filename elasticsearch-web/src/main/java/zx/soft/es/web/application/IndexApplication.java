@@ -6,8 +6,9 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
 
-import zx.soft.es.index.BulkIndex;
-import zx.soft.es.model.Weibo;
+import zx.soft.es.client.BuildClient;
+import zx.soft.es.core.domain.Weibo;
+import zx.soft.es.core.index.BulkIndex;
 import zx.soft.es.web.resource.IndexServerResource;
 
 /**
@@ -18,11 +19,12 @@ import zx.soft.es.web.resource.IndexServerResource;
 public class IndexApplication extends Application {
 
 	//private final Index in;
+
 	private final BulkIndex bulkIndex;
 
 	public IndexApplication() {
-		//in = new Index();
-		bulkIndex = new BulkIndex();
+		//in = new Index(BuildClient.buildClient(), "spiderindextest", "spidertypetest");
+		bulkIndex = new BulkIndex(BuildClient.buildClient(), "spiderindextest", "spidertypetest");
 	}
 
 	@Override

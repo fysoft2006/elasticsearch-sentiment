@@ -1,14 +1,6 @@
 package zx.soft.es.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "sina_user_weibos_1386614765")
 public class SinaWeibo {
-
 	private String wid;
 	private long username;
 	private int repostscount;
@@ -28,35 +20,6 @@ public class SinaWeibo {
 	private float latitude;
 	private float longitude;
 
-	public SinaWeibo() {
-
-	}
-
-	public SinaWeibo(String id, String wid, long username, int repostscount, int commentscount, String text,
-			long createat, String owid, long ousername, boolean favorited, String geo, float latitude, float longitude,
-			String originalpic, String source, boolean visible, long lasttime) {
-		this.wid = wid;
-		this.username = username;
-		this.repostscount = repostscount;
-		this.commentscount = commentscount;
-		this.text = text;
-		this.createat = createat;
-		this.owid = owid;
-		this.ousername = ousername;
-		this.favorited = favorited;
-		this.originalpic = originalpic;
-		this.lasttime = lasttime;
-		this.id = id;
-		this.geo = geo;
-		this.source = source;
-		this.visible = visible;
-		this.latitude = latitude;
-		this.longitude = longitude;
-
-	}
-
-	@Id
-	@Column(name = "wid")
 	public String getWid() {
 		return wid;
 	}
@@ -65,7 +28,6 @@ public class SinaWeibo {
 		this.wid = wid;
 	}
 
-	@Column(name = "username")
 	public long getUsername() {
 		return username;
 	}
@@ -74,7 +36,6 @@ public class SinaWeibo {
 		this.username = username;
 	}
 
-	@Column(name = "repostscount")
 	public int getRepostscount() {
 		return repostscount;
 	}
@@ -83,7 +44,6 @@ public class SinaWeibo {
 		this.repostscount = repostscount;
 	}
 
-	@Column(name = "commentscount")
 	public int getCommentscount() {
 		return commentscount;
 	}
@@ -92,7 +52,6 @@ public class SinaWeibo {
 		this.commentscount = commentscount;
 	}
 
-	@Column(name = "text")
 	public String getText() {
 		return text;
 	}
@@ -101,7 +60,6 @@ public class SinaWeibo {
 		this.text = text;
 	}
 
-	@Column(name = "createat")
 	public long getCreateat() {
 		return createat;
 	}
@@ -110,7 +68,6 @@ public class SinaWeibo {
 		this.createat = createat;
 	}
 
-	@Column(name = "owid")
 	public String getOwid() {
 		return owid;
 	}
@@ -119,7 +76,6 @@ public class SinaWeibo {
 		this.owid = owid;
 	}
 
-	@Column(name = "ousername")
 	public long getOusername() {
 		return ousername;
 	}
@@ -128,7 +84,6 @@ public class SinaWeibo {
 		this.ousername = ousername;
 	}
 
-	@Column(name = "favorited")
 	public boolean isFavorited() {
 		return favorited;
 	}
@@ -137,7 +92,6 @@ public class SinaWeibo {
 		this.favorited = favorited;
 	}
 
-	@Column(name = "originalpic")
 	public String getOriginalpic() {
 		return originalpic;
 	}
@@ -146,7 +100,6 @@ public class SinaWeibo {
 		this.originalpic = originalpic;
 	}
 
-	@Column(name = "lasttime")
 	public long getLasttime() {
 		return lasttime;
 	}
@@ -155,7 +108,6 @@ public class SinaWeibo {
 		this.lasttime = lasttime;
 	}
 
-	@Column(name = "id")
 	public String getId() {
 		return id;
 	}
@@ -164,7 +116,6 @@ public class SinaWeibo {
 		this.id = id;
 	}
 
-	@Column(name = "geo")
 	public String getGeo() {
 		return geo;
 	}
@@ -173,7 +124,6 @@ public class SinaWeibo {
 		this.geo = geo;
 	}
 
-	@Column(name = "source")
 	public String getSource() {
 		return source;
 	}
@@ -182,7 +132,6 @@ public class SinaWeibo {
 		this.source = source;
 	}
 
-	@Column(name = "visible")
 	public boolean isVisible() {
 		return visible;
 	}
@@ -191,7 +140,6 @@ public class SinaWeibo {
 		this.visible = visible;
 	}
 
-	@Column(name = "latitude")
 	public float getLatitude() {
 		return latitude;
 	}
@@ -200,7 +148,6 @@ public class SinaWeibo {
 		this.latitude = latitude;
 	}
 
-	@Column(name = "longitude")
 	public float getLongitude() {
 		return longitude;
 	}
