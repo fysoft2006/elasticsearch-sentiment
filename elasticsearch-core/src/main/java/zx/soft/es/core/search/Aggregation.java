@@ -18,8 +18,8 @@ public class Aggregation {
 		this.client = client;
 	}
 
-	public void termsAggregation() {
-		QueryBuilder qb = QueryBuilders.queryString("风暴").defaultOperator(Operator.AND);
+	public void termsAggregation(String key) {
+		QueryBuilder qb = QueryBuilders.queryString(key).defaultOperator(Operator.AND);
 		AggregationBuilder<?> ab = AggregationBuilders.terms("新浪微博").field("source_name")
 				.subAggregation(AggregationBuilders.min("last_time").field("source_id"));
 		SearchResponse sr = client.prepareSearch("spiderindextest").setQuery(qb).addAggregation(ab).execute()

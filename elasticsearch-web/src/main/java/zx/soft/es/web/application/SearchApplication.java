@@ -1,6 +1,7 @@
 package zx.soft.es.web.application;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import org.elasticsearch.action.deletebyquery.DeleteByQueryResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -18,6 +19,7 @@ import zx.soft.es.core.search.Count;
 import zx.soft.es.core.search.SearchingData;
 import zx.soft.es.web.resource.CountResource;
 import zx.soft.es.web.resource.SearchServerResource;
+import zx.soft.utils.config.ConfigUtil;
 
 public class SearchApplication extends Application {
 
@@ -25,11 +27,13 @@ public class SearchApplication extends Application {
 	private final SearchingData searchingData;
 	private final Count count;
 	private Delete delete;
+	private Properties props = ConfigUtil.getProps("index.properties");
 
 	public SearchApplication() {
-		searchingData = new SearchingData(BuildClient.buildClient(), "spiderindextest", "spidertypetest");
-		count = new Count(BuildClient.buildClient(), "spiderindextest");
-		delete = new Delete(BuildClient.buildClient(), "spiderindextest");
+		searchingData = new SearchingData(BuildClient.buildClient(), props.getProperty("name.index"),
+				props.getProperty("name.type"));
+		count = new Count(BuildClient.buildClient(), props.getProperty("name.index"));
+		delete = new Delete(BuildClient.buildClient(), props.getProperty("name.index"));
 	}
 
 	@Override
@@ -40,7 +44,6 @@ public class SearchApplication extends Application {
 		return router;
 	}
 
-	@SuppressWarnings("static-access")
 	public SearchResponse doSearch(SearchParameters searchParameters) {
 		SearchResponse response = null;
 		try {

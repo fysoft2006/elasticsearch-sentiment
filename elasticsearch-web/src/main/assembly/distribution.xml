@@ -13,6 +13,7 @@
 			<directory>src/main/resources</directory>
 			<includes>
 				<include>elasticsearch.properties</include>
+				<include>index.properties</include>
 				<include>logback.xml</include>
 				<include>web-server.properties</include>
 			</includes>

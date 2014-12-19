@@ -49,7 +49,7 @@ public class BulkIndex {
 			}
 
 		}).setBulkActions(500).setBulkSize(new ByteSizeValue(10, ByteSizeUnit.KB))
-				.setFlushInterval(TimeValue.timeValueSeconds(60)).setConcurrentRequests(8).build();
+		.setFlushInterval(TimeValue.timeValueSeconds(60)).setConcurrentRequests(8).build();
 	}
 
 	public void doIndex(List<Weibo> weibos) {

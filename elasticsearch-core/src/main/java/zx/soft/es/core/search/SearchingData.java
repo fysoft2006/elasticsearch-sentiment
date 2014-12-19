@@ -31,7 +31,7 @@ public class SearchingData {
 		this.type = type;
 	}
 
-	public static SearchResponse doSearch(SearchParameters searchParameters) throws IOException {
+	public SearchResponse doSearch(SearchParameters searchParameters) throws IOException {
 		SearchRequestBuilder searchRequest = client.prepareSearch(index).setTypes(type);
 		logger.info("index=" + index + ",type=" + type);
 
@@ -129,19 +129,4 @@ public class SearchingData {
 		return searchRequest.execute().actionGet();
 	}
 
-	/*public static void main(String[] args) throws IOException {
-		SearchParameters searchParameters = new SearchParameters();
-		searchParameters.setFq(" 相信  ");
-		searchParameters.setTimeout(new TimeValue(1000000));
-		searchParameters.setSize(5);
-		searchParameters.setFields("_source,content,nickname,read_count");
-		searchParameters.setLowercase_expanded_terms(Boolean.FALSE);
-		searchParameters.setTrack_scores(false);
-		searchParameters.setFq("lasttime:[1416384000 TO 1416384010]");
-		searchParameters.setFrom(1);
-		searchParameters.setExplain(true);
-		searchParameters.setDefault_operator(Operator.OR);
-		SearchResponse response = doSearch(searchParameters);
-		System.out.println(response);
-	}*/
 }

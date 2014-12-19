@@ -30,10 +30,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.restlet.jse</groupId>
-			<artifactId>org.restlet.ext.simple</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.restlet.jse</groupId>
 			<artifactId>org.restlet.ext.jackson</artifactId>
 		</dependency>
 		<!-- 日志包 -->
@@ -75,6 +71,7 @@
 				<configuration>
 					<excludes>
 						<exclude>elasticsearch.properties</exclude>
+						<exclude>index.properties</exclude>
 						<exclude>logback.xml</exclude>
 						<exclude>web-server.properties</exclude>
 					</excludes>
